@@ -27,7 +27,7 @@ if "full_text" not in st.session_state:
 # La clé sera configurée dans l'interface de Streamlit Cloud (Secrets)
 if "GOOGLE_API_KEY" in st.secrets:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 else:
     st.error("Configuration API manquante. Contacte l'administrateur.")
 
@@ -92,4 +92,5 @@ else:
                 full_response = f"Désolé {st.session_state.prenom}, tu n'as pas encore chargé de documents dans la barre latérale !"
             
             st.markdown(full_response)
+
             st.session_state.messages.append({"role": "assistant", "content": full_response})
